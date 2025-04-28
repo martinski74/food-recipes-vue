@@ -1,47 +1,65 @@
-import { defineStore } from "pinia";
-import { ref, computed } from "vue";
-import axios from "axios";
+import { defineStore } from 'pinia';
+import { ref, computed } from 'vue';
+import axios from 'axios';
+import { useToast } from 'vue-toast-notification';
 
-export const useUserStore = defineStore("user", () => {
+const $toast = useToast();
+
+export const useUserStore = defineStore('user', () => {
   const user = ref(null);
   const isLoggedIn = computed(() => !!user.value);
   const getUserData = computed(() => (user.value ? user.value : null));
 
   const register = async (input) => {
     try {
-      const response = await axios.post("/api/users/register", input, {
+      const response = await axios.post('/api/users/register', input, {
         headers: {
-          "Content-Type": "multipart/form-data",
+          'Content-Type': 'multipart/form-data',
         },
       });
 
       // user.value = response.data;
     } catch (error) {
-      console.error("Error registering user:", error);
+      console.error('Error registering user:', error);
     }
   };
 
   const login = async (input) => {
     try {
-      const response = await axios.post("/api/users/login", {
+      const response = await axios.post('/api/users/login', {
         email: input.email,
         password: input.password,
       });
       user.value = response.data;
 
-      localStorage.setItem("user", JSON.stringify(user.value));
+      localStorage.setItem('user', JSON.stringify(user.value));
+      $toast.open({
+        message: 'Successfully logged in!',
+        type: 'success',
+        position: 'top-right',
+        duration: 2000,
+        dismissible: true,
+      });
     } catch (error) {
-      console.error("Error logging in:", error);
+      $toast.open({
+        message: `${error.response.data.message}`.toString(),
+        type: 'error',
+        position: 'top-right',
+        duration: 2000,
+        dismissible: true,
+      });
+
+      console.error('Error logging in:', error.response.data.message);
     }
   };
 
   const logout = async () => {
     try {
-      const res = await axios.get("/api/users/logout");
+      const res = await axios.get('/api/users/logout');
       user.value = null;
-      localStorage.removeItem("user");
+      localStorage.removeItem('user');
     } catch (error) {
-      console.error("Error logging out:", error);
+      console.error('Error logging out:', error);
     }
   };
 

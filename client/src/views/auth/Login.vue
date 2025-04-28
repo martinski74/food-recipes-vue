@@ -32,38 +32,36 @@
   </main>
 </template>
 <script setup>
-import { ref } from "vue";
-import { useToast } from "vue-toast-notification";
-import "vue-toast-notification/dist/theme-sugar.css";
-import { useUserStore } from "@/stores/user.js";
-import { useRouter } from "vue-router";
+import { ref } from 'vue';
+
+import { useUserStore } from '@/stores/user.js';
+import { useRouter } from 'vue-router';
 
 const userStore = useUserStore();
 const router = useRouter();
-const $toast = useToast();
 
 const input = ref({
-  email: "",
-  password: "",
+  email: '',
+  password: '',
 });
 const errors = ref({
-  email: "",
-  password: "",
+  email: '',
+  password: '',
 });
 
 const validateForm = () => {
   const newErrors = {};
 
   if (!input.value.email) {
-    newErrors.email = "Email is required";
+    newErrors.email = 'Email is required';
   } else if (!/\S+@\S+\.\S+/.test(input.value.email)) {
-    newErrors.email = "Email is invalid";
+    newErrors.email = 'Email is invalid';
   }
 
   if (!input.value.password) {
-    newErrors.password = "Password is required";
+    newErrors.password = 'Password is required';
   } else if (input.value.password.length < 3) {
-    newErrors.password = "Password must be at least 3 characters";
+    newErrors.password = 'Password must be at least 3 characters';
   }
 
   errors.value = newErrors;
@@ -75,24 +73,18 @@ const handleSubmit = async () => {
   const isValid = validateForm();
   if (!isValid) {
     $toast.open({
-      message: "Please fill in all fields correctly.",
-      type: "error",
+      message: 'Please fill in all fields correctly.',
+      type: 'error',
       duration: 2000,
-      position: "top-right",
+      position: 'top-right',
       dismissible: true,
     });
     return;
   }
   try {
     const res = await userStore.login(input.value);
-    $toast.open({
-      message: "Successfully logged in!",
-      type: "success",
-      position: "top-right",
-      duration: 2000,
-      dismissible: true,
-    });
-    router.push("/catalog");
+
+    router.push('/catalog');
   } catch (error) {
     console.log(error);
   }
@@ -171,7 +163,7 @@ textarea {
 }
 .container:before,
 .container:after {
-  content: "";
+  content: '';
   display: block;
   clear: both;
 }
