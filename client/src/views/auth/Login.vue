@@ -93,24 +93,24 @@ const handleSubmit = async () => {
 
 <style scoped lang="css">
 .login {
-  margin-top: 10%;
+  margin-top: 5%;
+  padding: 0 1rem;
 }
 
 .form {
   background: #5b1f51;
   max-width: 460px;
   margin: auto;
-  margin-top: 10px;
-  padding: 45px;
+  padding: 2rem;
   text-align: center;
   border-radius: 30px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.682), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
 .form h2 {
-  margin-top: 0px;
-  margin-bottom: 30px;
-  font-size: 30px;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
   color: white;
 }
 
@@ -118,7 +118,7 @@ const handleSubmit = async () => {
 textarea {
   outline: 0;
   background: #f2f2f2;
-  width: 90%;
+  width: 100%;
   height: 50px;
   border: 0;
   margin: 0 0 15px;
@@ -129,6 +129,12 @@ textarea {
   text-align: center;
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
+  transition: all 0.3s ease;
+}
+
+.form input:focus {
+  background: #ffffff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .form button {
@@ -142,30 +148,15 @@ textarea {
   color: black;
   font-size: 14px;
   border-radius: 10px;
-  -webkit-transition: all 0.3 ease;
-  transition: all 0.3 ease;
+  transition: all 0.3s ease;
   cursor: pointer;
 }
+
 .form button:hover,
 .form button:active,
 .form button:focus {
   background: #e192e1;
-}
-
-.form .register-form {
-  display: none;
-}
-.container {
-  position: relative;
-  z-index: 1;
-  max-width: 300px;
-  margin: 0 auto;
-}
-.container:before,
-.container:after {
-  content: '';
-  display: block;
-  clear: both;
+  transform: scale(1.05);
 }
 
 .form .message {
@@ -173,15 +164,81 @@ textarea {
   color: #b3b3b3;
   font-size: 17px;
 }
+
 .form .message a {
   color: white;
   text-decoration: none;
+  transition: color 0.3s ease;
 }
+
+.form .message a:hover {
+  color: #e192e1;
+}
+
 .form .error {
   color: #ff0000;
   font-size: 16px;
-  /* background-color: #e0c4c4; */
   margin-top: -5px;
   margin-bottom: 5px;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 576px) {
+  .login {
+    margin-top: 2rem;
+  }
+
+  .form {
+    padding: 1.5rem;
+  }
+
+  .form h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .form input,
+  textarea {
+    height: 45px;
+    font-size: 13px;
+    padding: 12px;
+  }
+
+  .form button {
+    width: 70%;
+    padding: 12px;
+    font-size: 13px;
+  }
+
+  .form .message {
+    font-size: 15px;
+  }
+
+  .form .error {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .form {
+    padding: 1rem;
+  }
+
+  .form h2 {
+    font-size: 1.3rem;
+  }
+
+  .form input,
+  textarea {
+    height: 40px;
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  .form button {
+    width: 80%;
+    padding: 10px;
+    font-size: 12px;
+  }
 }
 </style>

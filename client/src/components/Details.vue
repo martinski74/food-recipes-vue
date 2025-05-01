@@ -101,6 +101,7 @@ onMounted(async () => {
   max-width: 800px;
   margin: 2em auto 0 auto;
   text-align: center;
+  overflow: hidden;
 }
 
 .recipe-detail:hover {
@@ -115,6 +116,8 @@ onMounted(async () => {
   transition: transform 0.3s;
   float: left;
   margin-right: 20px;
+  object-fit: cover;
+  height: 300px;
 }
 
 .recipe-detail:hover img {
@@ -139,61 +142,24 @@ onMounted(async () => {
   font-weight: 700;
 }
 
-.recipe-detail ul,
-.recipe-detail ol {
+.recipe-detail p {
   text-align: left;
-  margin: 1em 0;
-  padding: 0 1em;
+  line-height: 1.6;
   color: #555;
-}
-
-.recipe-detail ul li,
-.recipe-detail ol li {
-  margin-bottom: 0.5em;
+  margin: 1em 0;
 }
 
 .command {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
 }
 
-.command a {
-  background-color: #db34a2;
-  color: white;
-  padding: 0.5em 1em;
-  text-decoration: none;
-  border-radius: 4px;
-  display: inline-block;
-  transition: background 0.3s, transform 0.3s;
-  font-weight: 700;
-  margin-bottom: 15px;
-  margin-left: 20px;
-}
-.command span {
-  background-color: #db34a2;
-  color: white;
-  padding: 0.5em 1em;
-  text-decoration: none;
-  border-radius: 4px;
-  display: inline-block;
-  transition: background 0.3s, transform 0.3s;
-  font-weight: 700;
-  margin-bottom: 15px;
-  margin-left: 20px;
-}
-
-.command span:hover {
-  background-color: #b1177d;
-  transform: scale(1.05);
-  cursor: pointer;
-}
-
-.command a:hover {
-  background-color: #b1177d;
-  transform: scale(1.05);
-}
-
+.command a,
+.command span,
 .command p {
   background-color: #db34a2;
   color: white;
@@ -203,19 +169,75 @@ onMounted(async () => {
   display: inline-block;
   transition: background 0.3s, transform 0.3s;
   font-weight: 700;
-  margin-top: 1em;
-  margin-left: 20px;
+  margin: 0;
 }
-.loader-details {
-  position: absolute;
-  z-index: 55;
-  margin-left: 50%;
-  margin-top: 150px;
+
+.command span:hover,
+.command a:hover {
+  background-color: #b1177d;
+  transform: scale(1.05);
+  cursor: pointer;
 }
+
 .loader {
   position: absolute;
   z-index: 55;
-  margin-left: 50%;
-  margin-top: 150px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Responsive styles */
+@media screen and (max-width: 992px) {
+  .recipe-detail {
+    margin: 1em;
+    padding: 1.5em;
+  }
+
+  .recipe-detail img {
+    width: 100%;
+    float: none;
+    margin-right: 0;
+    height: 250px;
+  }
+
+  .recipe-detail h2 {
+    font-size: 1.3em;
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .recipe-detail {
+    margin: 0.5em;
+    padding: 1em;
+  }
+
+  .recipe-detail img {
+    height: 200px;
+  }
+
+  .recipe-detail h2 {
+    font-size: 1.2em;
+  }
+
+  .recipe-detail h3 {
+    font-size: 1.1em;
+  }
+
+  .recipe-detail p {
+    font-size: 0.9em;
+  }
+
+  .command {
+    flex-direction: column;
+  }
+
+  .command a,
+  .command span,
+  .command p {
+    width: 100%;
+    text-align: center;
+  }
 }
 </style>

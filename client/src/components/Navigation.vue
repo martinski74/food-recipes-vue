@@ -62,8 +62,6 @@ const onLogout = () => {
 </script>
 <style scoped>
 .header {
-  /* display: flex;
-    justify-content: space-between; */
   align-items: center;
   padding: 1em;
   background: #5b1f51;
@@ -72,6 +70,9 @@ const onLogout = () => {
 nav {
   display: flex;
   justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 nav a,
@@ -80,6 +81,7 @@ span {
   color: #0a0a0a;
   font-weight: 400;
 }
+
 .active {
   border-radius: 10px;
   color: #fff9f9;
@@ -98,5 +100,35 @@ span {
 .header span:hover {
   color: rgb(202, 203, 204);
   cursor: pointer;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    padding: 1rem 0;
+  }
+
+  nav a,
+  span {
+    font-size: 1.2rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .header {
+    padding: 0.5em;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  nav img {
+    width: 70px;
+  }
+
+  nav a,
+  span {
+    font-size: 1rem;
+  }
 }
 </style>

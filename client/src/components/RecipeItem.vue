@@ -29,6 +29,7 @@ defineProps({
   overflow: hidden;
   width: 100%;
   max-width: 350px;
+  margin: 1rem auto;
 }
 
 .recipe:hover {
@@ -38,6 +39,8 @@ defineProps({
 
 .recipe img {
   width: 100%;
+  height: 200px;
+  object-fit: cover;
   border-radius: 8px;
   margin-bottom: 1em;
   transition: transform 0.3s;
@@ -59,7 +62,7 @@ defineProps({
 .recipe p {
   margin: 1em 0;
   color: #555;
-  height: 60px; /* Ensures consistent height */
+  height: 60px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -79,5 +82,40 @@ defineProps({
 .recipe a:hover {
   background-color: #2980b9;
   transform: scale(1.05);
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+  .recipe {
+    max-width: 300px;
+  }
+
+  .recipe img {
+    height: 180px;
+  }
+
+  .recipe h3 {
+    font-size: 1.1em;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .recipe {
+    max-width: 100%;
+    margin: 0.5rem 0;
+  }
+
+  .recipe img {
+    height: 160px;
+  }
+
+  .recipe h3 {
+    font-size: 1em;
+  }
+
+  .recipe p {
+    height: 50px;
+    font-size: 0.9em;
+  }
 }
 </style>
