@@ -1,0 +1,1 @@
+A comprehensive food recipe platform developed with Vue.js. Users can browse, search,create, edit, delete, recommend and save recipes. The application uses Express for the backend and MongoDB for data storage.
