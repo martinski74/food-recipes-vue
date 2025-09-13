@@ -1,3 +1,3 @@
 ### A comprehensive food recipe platform developed with Vue.js. Users can browse, search,create, edit, delete, recommend and save recipes. The application uses Express for the backend and MongoDB for data storage.
 
-### Open app here - https://food-recipes-client.netlify.app
+### Open app here - 
